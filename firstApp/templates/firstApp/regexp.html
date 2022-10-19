@@ -1,0 +1,13 @@
+{% extends 'firstApp/base.html' %}
+
+{% block title %}Regexp{% endblock %}
+
+{% block content %}
+    <h1>This is a Regexp page</h1>
+    {% if code %}
+        {% include 'includes/phone.html' with number=path %}
+    {% else %}
+        {% include 'includes/slug.html' with slug=path %}
+    {% endif %}
+    {% include 'includes/homepage.html' %}
+{% endblock %}

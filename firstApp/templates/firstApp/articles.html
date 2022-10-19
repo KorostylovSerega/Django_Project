@@ -1,0 +1,18 @@
+{% extends 'firstApp/base.html' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block content %}
+    <h1>This is article</h1>
+    {% if article %}
+        {% if article|divisibleby:'2' %}
+            <p>This article is even</p>
+        {% else %}
+            <p>This article is odd</p>
+        {% endif %}
+    {% endif %}
+    {% if text %}
+        {% include 'includes/slug.html' with slug=text %}
+    {% endif %}
+    {% include 'includes/homepage.html' %}
+{% endblock %}

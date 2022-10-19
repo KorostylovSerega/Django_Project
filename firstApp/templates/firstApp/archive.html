@@ -1,0 +1,15 @@
+{% extends 'firstApp/base.html' %}
+
+{% block title %}Archive{% endblock %}
+
+{% block content %}
+    <h1>This is archive</h1>
+    {% if article %}
+        {% if article|divisibleby:'2' %}
+            <p>This article is even</p>
+        {% else %}
+            <p>This article is odd</p>
+        {% endif %}
+    {% endif %}
+    {% include 'includes/homepage.html' %}
+{% endblock %}

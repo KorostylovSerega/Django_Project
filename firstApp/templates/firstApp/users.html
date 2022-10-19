@@ -1,0 +1,11 @@
+{% extends 'firstApp/base.html' %}
+
+{% block title %}User{% endblock %}
+
+{% block content %}
+    <h1>This is a users page</h1>
+    {% if number %}
+        <p>User id: {{ number }}</p>
+    {% endif %}
+    {% include 'includes/homepage.html' %}
+{% endblock %}
