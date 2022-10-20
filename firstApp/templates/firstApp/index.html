@@ -1,0 +1,11 @@
+{% extends 'firstApp/base.html' %}
+
+{% block title %}Main page{% endblock %}
+
+{% block content %}
+    <h1>This is a main page</h1>
+    <ul>
+        <li><a href="{% url 'articles_number' article %}">Article with random id</a></li>
+        <li><a href="{% url 'articles_slug' article slug %}">Article with random slug</a></li>
+    </ul>
+{% endblock %}
