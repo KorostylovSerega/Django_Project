@@ -1,0 +1,109 @@
+body {
+    background: #dce0e6;
+}
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+    width: 50%;
+    min-width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #e1e1e3;
+    box-shadow: 0 0 10px #4c4c4f;
+    border-radius: 5px;
+    font-family: Play, sans-serif;
+}
+
+.main > div {
+    display: flex;
+    width: 40%;
+    flex-direction: column;
+    background: #b3b5b5;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #4c4c4f;
+    margin: 20px;
+    padding: 5px 20px 15px 20px;
+}
+
+.main .books:hover {
+    box-shadow: 0 0 20px #4c4c4f;
+}
+
+.main h2 {
+    margin: 10px 0;
+    font-size: 36px;
+    color: #ffffff;
+    text-shadow: 5px -3px 5px #2c2c2e;
+}
+
+.main h3 {
+    text-align: left;
+    margin: 10px 0;
+}
+
+.main li {
+    text-align: left;
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.main ul {
+    margin: 5px 0 5px 20px;
+}
+
+.main ul li > a {
+    text-decoration: none;
+    color: black;
+}
+
+.main ul li > a:hover {
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow:  0 0 7px #2c2c2e;
+}
+
+.main p {
+    width: 50%;
+    font-weight: bold;
+    font-size: 26px;
+    color: #ffffff;
+    text-shadow: 0 0 5px #2c2c2e;
+    margin: 20px 0;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #2c2c2e;
+}
+
+.main #true {
+    background: #18853e;
+}
+
+.main #false {
+    background: #ad2a30;
+}
+
+.main .reader {
+    width: 90%;
+    padding: 5px 30px 15px 30px;
+}
+
+.main > a {
+    width: 20%;
+    padding: 5px;
+    background: #b3b5b5;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #ffffff;
+    text-shadow: 0 0 5px #2c2c2e;
+    box-shadow: 0 0 5px #4c4c4f;
+}
+
+.main > a:hover {
+    box-shadow: 0 0 10px #4c4c4f;
+    color: #000000;
+    text-shadow: none;
+}

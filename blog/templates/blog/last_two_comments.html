@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Last two comments{% endblock %}
+
+{% block content %}
+    <div class="last_two">
+    <h2>Article author: {{ article.author.first_name }} {{ article.author.last_name }}</h2>
+    {% for comment in comments %}
+        <p>{{ comment.body }}</p>
+        <p>{{ comment.publication_date }}</p>
+    {% endfor %}
+    <a class="go_home" href="{% url 'blog' %}">To blog</a>
+    </div>
+{% endblock %}

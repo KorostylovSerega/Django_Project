@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}Comment create{% endblock %}
+
+{% block content %}
+    <div class="comment_create">
+        <img src="{% static 'blog/img/user.png' %}" alt="user_img">
+        <span class="comment_author">{{ comment.author }}</span>
+        <p class="comment_body">{{ comment.body }}</p>
+        <p class="comment_date">
+            <img src="{% static 'blog/img/calendar.png' %}" alt="date_img">
+            <span>{{ comment.publication_date }}</span>
+        </p>
+    <a class="go_home" href="{% url 'blog' %}">To blog</a>
+    </div>
+{% endblock %}
