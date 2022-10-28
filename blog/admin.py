@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from .models import Users, Articles, Comments, Response
+from .models import User, Article, Comment, Response
 
 
-admin.site.register(Users)
-admin.site.register(Articles)
-admin.site.register(Comments)
+admin.site.register(User)
+admin.site.register(Article)
+admin.site.register(Comment)
 admin.site.register(Response)

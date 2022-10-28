@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Genres(models.Model):
+class Genre(models.Model):
     title = models.CharField(max_length=30, unique=True)
 
     class Meta:
@@ -13,7 +13,7 @@ class Genres(models.Model):
         return self.title
 
 
-class Authors(models.Model):
+class Author(models.Model):
     first_name = models.CharField('name', max_length=30)
     last_name = models.CharField('surname', max_length=30)
 
@@ -27,7 +27,7 @@ class Authors(models.Model):
         return f'{self.first_name} {self.last_name}'
 
 
-class Readers(models.Model):
+class Reader(models.Model):
     first_name = models.CharField('name', max_length=30)
     last_name = models.CharField('surname', max_length=30)
     email = models.EmailField(max_length=50, unique=True)
@@ -41,12 +41,12 @@ class Readers(models.Model):
         return f'{self.first_name} {self.last_name}'
 
 
-class Books(models.Model):
+class Book(models.Model):
     title = models.CharField(max_length=100)
     year = models.PositiveSmallIntegerField()
-    genres = models.ManyToManyField(Genres)
-    authors = models.ManyToManyField(Authors)
-    readers = models.ManyToManyField(Readers)
+    genres = models.ManyToManyField(Genre)
+    authors = models.ManyToManyField(Author)
+    readers = models.ManyToManyField(Reader)
     availability = models.BooleanField(default=True)
 
     class Meta:

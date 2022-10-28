@@ -6,7 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils import timezone
 
 
-class Users(models.Model):
+class User(models.Model):
     first_name = models.CharField('name', max_length=30)
     last_name = models.CharField('surname', max_length=30)
     nickname = models.CharField(max_length=30, unique=True)
@@ -22,18 +22,18 @@ class Users(models.Model):
         return self.nickname
 
 
-class ArticlesCommentsInfo(models.Model):
+class ArticleCommentInfo(models.Model):
     body = models.TextField('text')
-    author = models.ForeignKey(Users, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     publication_date = models.DateTimeField('published')
-    comments = GenericRelation('comments')
+    comments = GenericRelation('comment')
     reactions = GenericRelation('response')
 
     class Meta:
         abstract = True
 
 
-class Articles(ArticlesCommentsInfo):
+class Article(ArticleCommentInfo):
     title = models.CharField(max_length=100)
 
     class Meta:
@@ -45,7 +45,7 @@ class Articles(ArticlesCommentsInfo):
         return self.title
 
 
-class Comments(ArticlesCommentsInfo):
+class Comment(ArticleCommentInfo):
 
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
@@ -73,7 +73,7 @@ class Response(models.Model):
         (DISLIKE, 'dislike')
     ]
     reaction = models.CharField(max_length=1, choices=REACTION_CHOICES, default=LIKE)
-    author = models.ForeignKey(Users, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()

@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Authors(models.Model):
+class Author(models.Model):
     first_name = models.CharField('name', max_length=30)
     last_name = models.CharField('surname', max_length=30)
 
@@ -14,11 +14,11 @@ class Authors(models.Model):
         return f'{self.first_name} {self.last_name}'
 
 
-class Books(models.Model):
+class Book(models.Model):
     title = models.CharField(max_length=30)
     year = models.PositiveSmallIntegerField()
     genre = models.CharField(max_length=30)
-    author = models.ForeignKey(Authors, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['title']
