@@ -21,4 +21,5 @@ urlpatterns = [
     path('', include('firstApp.urls')),
     path('library/', include('bookLibrary.urls')),
     path('blog/', include('blog.urls')),
+    path('form/', include('form.urls')),
 ]

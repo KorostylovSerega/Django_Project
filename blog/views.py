@@ -24,8 +24,8 @@ def get_last_comments(request):
 
 def comments_updater(request):
     filter_comments = Comment.objects.filter(Q(body__contains='Middle') |
-                                              Q(body__contains='Start') |
-                                              Q(body__contains='Finish'))
+                                             Q(body__contains='Start') |
+                                             Q(body__contains='Finish'))
 
     for comment in filter_comments:
         text = comment.body
