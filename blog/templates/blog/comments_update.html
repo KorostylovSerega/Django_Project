@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}comments update{% endblock %}
+
+{% block content %}
+    <div class="comment_update">
+    {% for coment in comments %}
+        <p>{{ coment }}</p>
+    {% endfor %}
+    <a class="go_home" href="{% url 'blog' %}">To blog</a>
+    </div>
+{% endblock %}

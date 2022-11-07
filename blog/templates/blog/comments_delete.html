@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}comments delete{% endblock %}
+
+{% block content %}
+    <div class="delete_comment">
+        <p>Count of deleted messages: {{ comments|first }}</p>
+        <a class="go_home" href="{% url 'blog' %}">To blog</a>
+    </div>
+{% endblock %}

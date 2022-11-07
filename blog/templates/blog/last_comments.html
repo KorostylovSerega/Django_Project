@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}last comments{% endblock %}
+
+{% block content %}
+    <div class="last_comments">
+        <h3>5 last comments</h3>
+        <ol>
+        {% for comment in comments %}
+            <li><p>{{ comment }} {{ comment.publication_date }}</p></li>
+        {% endfor %}
+        </ol>
+        <a class="go_home" href="{% url 'blog' %}">To blog</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load blog_tags %}
+
+{% block title %}blog{% endblock %}
+
+{% block content %}
+    <div class="queries">
+        <h2>Popular queries</h2>
+        <ul>
+            <li><a href="{% url 'last_comment' %}">5 last comments</a></li>
+            <li><a href="{% url 'comment_create' %}">Create comment</a></li>
+            <li><a href="{% url 'comments_update' %}">Updates Start Middle Finish</a></li>
+            <li><a href="{% url 'comments_delete' %}">Delete comments</a></li>
+            <li><a href="{% url 'last_two_comments' %}">Last two comments</a></li>
+        </ul>
+    </div>
+    {% for article in articles %}
+        <div class="article">
+            <h2>{{ article.title }}</h2>
+            <p class="text">{{ article.body }}</p>
+            <p class="icons date">
+                <img src="{% static 'blog/img/calendar.png' %}" alt="date_img">
+                <span>{{ article.publication_date }}</span>
+            </p>
+            <p class="icons user">
+                <img src="{% static 'blog/img/user.png' %}" alt="user_img">
+                <span>{{ article.author }}</span>
+            </p>
+            <p class="icons like">
+                <img src="{% static 'blog/img/like.png' %}" alt="like_img">
+                <span>{{ article.reactions.all|reactions:'Y' }}</span>
+            </p>
+            <p class="icons dislike">
+                <img src="{% static 'blog/img/dislike.png' %}" alt="dislike_img">
+                <span>{{ article.reactions.all|reactions:'N' }}</span>
+            </p>
+            {% for comment in article.comments.all %}
+                <div class="comment">
+                    <img src="{% static 'blog/img/user.png' %}" alt="user_img">
+                    <span class="comment_author">{{ comment.author }}</span>
+                    <p class="comment_body">{{ comment.body }}</p>
+                    <p class="comment_date">
+                        <img src="{% static 'blog/img/calendar.png' %}" alt="date_img">
+                        <span>{{ comment.publication_date }}</span>
+                    </p>
+                    <p class="comment_reaction">
+                        <img src="{% static 'blog/img/like.png' %}" alt="like_img">
+                        <span>{{ comment.reactions.all|reactions:'Y' }}</span>
+                    </p>
+                    <p class="comment_reaction">
+                        <img src="{% static 'blog/img/dislike.png' %}" alt="dislike_img">
+                        <span>{{ comment.reactions.all|reactions:'N' }}</span>
+                    </p>
+                        {% for comment in comment.comments.all %}
+                            <div class="comment_to_comment">
+                                <img src="{% static 'blog/img/user.png' %}" alt="user_img">
+                                <span class="comment_author">{{ comment.author }}</span>
+                                <p class="comment_body">{{ comment.body }}</p>
+                                <p class="comment_date">
+                                    <img src="{% static 'blog/img/calendar.png' %}" alt="date_img">
+                                    <span>{{ comment.publication_date }}</span>
+                                 </p>
+                                <p class="comment_reaction">
+                                    <img src="{% static 'blog/img/like.png' %}" alt="like_img">
+                                    <span>{{ comment.reactions.all|reactions:'Y' }}</span>
+                                </p>
+                                <p class="comment_reaction">
+                                    <img src="{% static 'blog/img/dislike.png' %}" alt="dislike_img">
+                                    <span>{{ comment.reactions.all|reactions:'N' }}</span>
+                                </p>
+                            </div>
+                        {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% endblock %}

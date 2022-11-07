@@ -1,0 +1,20 @@
+{% extends 'bookLibrary/base.html' %}
+
+{% block title %}Readers{% endblock %}
+
+{% block content %}
+    <div class="reader">
+        <h2>{{ reader }}</h2>
+        <h3>Name: {{ reader.first_name }}</h3>
+        <h3>Surname: {{ reader.last_name }}</h3>
+        <h3>Email: {{ reader.email }}</h3>
+        <h3>User id: {{ reader.id }}</h3>
+        <h3>The books that are read:</h3>
+        <ul>
+            {% for book in reader.books_set.all %}
+                <li>{{ book }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="{% url 'library' %}">To library</a>
+{% endblock %}
