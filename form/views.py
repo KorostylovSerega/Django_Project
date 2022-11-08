@@ -54,17 +54,16 @@ def registration(request):
 
 @login_required(login_url='/form/login')
 def change_password(request):
+    user = request.user
     if request.method == 'POST':
-        form = ChangePasswordForm(request.POST)
+        form = ChangePasswordForm(request.POST, user=user)
         if form.is_valid():
-            user = request.user
-            if user.check_password(form.cleaned_data['old_password']):
-                user.set_password(form.cleaned_data['new_password'])
-                user.save()
-                login(request, user)
-                return HttpResponseRedirect('/form/user')
+            user.set_password(form.cleaned_data['new_password'])
+            user.save()
+            login(request, user)
+            return HttpResponseRedirect('/form/user')
     else:
-        form = ChangePasswordForm()
+        form = ChangePasswordForm(user=user)
     return render(request, 'form/change_password.html', {'form': form})
 
 
