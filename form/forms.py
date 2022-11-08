@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
 
 
 class EnglishLevelForm(forms.Form):
@@ -38,12 +37,14 @@ class EnglishLevelForm(forms.Form):
         if gender == 'M':
             if age < 20:
                 self.add_error('age', 'Age must be over 20 years old')
-            if english_level in 'A1A2B1':
+            if english_level == self.ELEMENTARY or \
+                    english_level == self.PRE_INTERMEDIATE or \
+                    english_level == self.INTERMEDIATE:
                 self.add_error('age', 'English proficiency must be at B2 level or higher')
         elif gender == 'F':
             if age < 22:
                 self.add_error('age', 'Age must be over 22 years old')
-            if english_level in 'A1A2':
+            if english_level == self.ELEMENTARY or english_level == self.PRE_INTERMEDIATE:
                 self.add_error('age', 'English proficiency must be at B1 level or higher')
 
 
@@ -86,19 +87,21 @@ class ChangePasswordForm(forms.Form):
     new_password = forms.CharField(widget=forms.PasswordInput, label='New password')
     new_password2 = forms.CharField(widget=forms.PasswordInput, label='New password repeat')
 
-    def clean_new_password(self):
-        old_password = self.cleaned_data.get('old_password')
-        new_password = self.cleaned_data.get('new_password')
-        if old_password == new_password:
-            raise ValidationError('Passwords must be different')
-        return new_password
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')
+        super().__init__(*args, **kwargs)
 
-    def clean_new_password2(self):
-        new_password = self.cleaned_data.get('new_password')
-        new_password2 = self.cleaned_data.get('new_password2')
+    def clean(self):
+        cleaned_data = super().clean()
+        old_password = cleaned_data.get('old_password')
+        new_password = cleaned_data.get('new_password')
+        new_password2 = cleaned_data.get('new_password2')
+        if not self.user.check_password(old_password):
+            self.add_error('old_password', 'Invalid password')
+        if old_password == new_password:
+            self.add_error('new_password', 'Passwords must be different')
         if new_password != new_password2:
-            raise ValidationError('Password entered incorrectly')
-        return new_password2
+            self.add_error('new_password2', 'Password entered incorrectly')
 
 
 class CommentsFinderForm(forms.Form):
