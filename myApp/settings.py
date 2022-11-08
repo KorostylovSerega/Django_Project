@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'bookCatalog',
     'bookLibrary',
     'blog',
+    'form',
 ]
 
 MIDDLEWARE = [

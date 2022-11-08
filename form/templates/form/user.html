@@ -1,0 +1,9 @@
+{% extends 'form/base.html' %}
+
+{% block title %}User{% endblock %}
+
+{% block content %}
+    {% include 'includes/user.html' %}
+    <p>{{ user.date_joined }}</p>
+    <a href="{% url 'change_password' %}">change password</a>
+{% endblock %}
